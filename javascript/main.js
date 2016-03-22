@@ -75,8 +75,8 @@ topics.on("value", function(snapshot) {//when a value changes
  		$("#sidebar").append("<a class='item link-sidebar'>"+topic+'</a>')
  	}
 });
-
 //General Events
+//side bar
 $(".hamburger").on("click", function(){
 	$("#sidebar").css("visibility", "initial")
 });
@@ -89,13 +89,9 @@ $("body").on("click", function(e){
 			$("#sidebar").css("visibility", "hidden")
 			}
 		}
-		
-		// if (e.target.id !== "sidebar") {
-		// 	$("#sidebar").css("visibility", "hidden")
-		// }
 	}
-	
 });
+//side bar
 
 function _addQuestionInput () {
 	$(".question-container").append("<div class='question-box'><div class='field'><label>Suggested Question:</label><textarea class='question' rows='2'></textarea></div><div class='field'><label>Provide an Answer:</label><textarea class='answer' rows='3'></textarea></div></div>")

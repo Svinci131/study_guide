@@ -9,9 +9,6 @@ $(".add-question").on("click", function (){
 	_addQuestionInput ()
 })
 //if you have admin privilidges
-//if an old topic is selected and 
-//add a prompt if all they do is select a topic 
-
 //set up what to do if nothing is clicked
 $("#suggestion").on('submit', function (e) {
       e.preventDefault();
@@ -22,16 +19,22 @@ $("#suggestion").on('submit', function (e) {
       //add new topic
       //if they've added a new topic 
       if (newTopic) {
-      	newTopic = _formatForFB(newTopic) 
-      	//check to be sure it doesn't exist
-      	var isThere = $("#"+newTopic).val(); 
-      	//if it doesn't set
-      	if (!isThere) {
-      		var newTopicObj = topics.child(""+newTopic);
-      		newTopicObj.set("no questions available")
+      	if (oldTopic !== "Default") {
+      		alert("Please select only one topic.")
       	}
-      	//otherwise just use the existing obj
-      	currentTopic = newTopic;
+      	else {
+      		newTopic = _formatForFB(newTopic) 
+	      	//check to be sure it doesn't exist
+	      	var isThere = $("#"+newTopic).val(); 
+	      	//if it doesn't set
+	      	if (!isThere) {
+	      		var newTopicObj = topics.child(""+newTopic);
+	      		newTopicObj.set("no questions available")
+	      	}
+	      	//otherwise just use the existing obj
+	      	currentTopic = newTopic;
+      	}
+      	
       }
       //otherwise grab old 
       else {
@@ -55,13 +58,11 @@ $("#suggestion").on('submit', function (e) {
 	      		console.log(currentTopic)
 	      	}
       	}
+
       
       });
-      //empting so it can 
-     
+      //reset
       this.reset();
-      // frm.reset();  
-
 });
 
 //keeps adding 

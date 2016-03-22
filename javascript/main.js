@@ -7,19 +7,27 @@ var topics = myDataRef.child("topics");
 $("#suggestion").on('submit', function (e) {
       e.preventDefault();
       //add new topic
-      var topic = $(".new-topic").val();
-      if (topic) {
-      	var newTopic = topics.child(""+topic);
-      	newTopic.set("no questions available")
+      var newTopic = $(".new-topic").val();
+      if (newTopic) {
+      	var newTopicObj = topics.child(""+newTopic);
+      	newTopicObj.set("no questions available")
       }
-      
-      	
+      else {
+
+      }
       //update topic
       //add questions
 
 
 });
 
-
+topics.on("value", function(snapshot) {//when a value changes  
+ 	var data=snapshot.val();
+ 	var obj = {};
+ 	for (topic in data) {
+ 		$(".old-topic").append("<option>"+topic+"</option>")
+ 	}
+ 	
+});
 //
 //topics.push({question: "samantha"}, );

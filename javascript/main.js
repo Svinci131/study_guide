@@ -3,7 +3,6 @@ var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics"); 
 
 //add questions function
-
 $(".add-question").on("click", function (){
 	alert();
 	_addQuestionInput ()

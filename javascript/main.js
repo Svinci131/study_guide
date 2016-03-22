@@ -56,6 +56,8 @@ $("#suggestion").on('submit', function (e) {
       	}
       
       });
+      this.reset();
+      // frm.reset();  
 
 });
 

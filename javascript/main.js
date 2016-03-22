@@ -26,8 +26,25 @@ topics.on("value", function(snapshot) {//when a value changes
  	var obj = {};
  	for (topic in data) {
  		$(".old-topic").append("<option>"+topic+"</option>")
+ 		$("#sidebar").append("<a class='item'>"+topic+'</a>')
  	}
- 	
 });
+
+var test = _formatForFB("Command' Line");
+console.log(_formatForSite(test));
+
+function _formatForFB (str) {
+	str = str.replace(/[.,\/#!'$%\^&\*;:{}=\-_`~()]/g,"")
+	str = str.replace(" ","_").toLowerCase();
+	return str
+}
+function _formatForSite (str) {
+	var arr = str.split("_")
+	var newArr = arr.map(function (txt) {
+		 txt = txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		 return txt
+	});
+	return newArr.join(" ")
+}
 //
 //topics.push({question: "samantha"}, );

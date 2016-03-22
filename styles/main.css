@@ -2,3 +2,7 @@
 .masthead.segment {
     padding-top: 5em;
 }
+
+#sidebar {
+	visibility: initial!important;
+}

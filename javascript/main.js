@@ -6,17 +6,12 @@ var topics = myDataRef.child("topics");
 
 topics.on("value", function(snapshot) {//when a value changes  
  	var data = snapshot.val();
- 	var obj = {};
- 	$(".old-topic").html("<option value='default'>Choose a Topic</option>")
- 	$("#sidebar").empty()
- 	for (topic in data) {
- 		$(".old-topic").append("<option id="+topic+">"+topic+"</option>")
- 		$("#sidebar").append("<a class='item link-sidebar'>"+topic+'</a>')
- 	}
+ 	render (data)
 });
 
-
-ReactDOM.render(
-	<Menu />,
+function render (data) {
+	ReactDOM.render(
+	<Menu data={data} />,
 		document.getElementById('Menu')
-);
+	);
+}

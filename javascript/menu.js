@@ -1,9 +1,25 @@
 var React = require('react');
 
 module.exports = React.createClass({
+	getTopics: function () {
+		var obj = this.props.data;
+		var arr = Object.keys(obj).reduce(function( arr, currentItem) {
+			arr.push( currentItem);
+			return arr;
+		}, []);
+		
+		var items = arr.map (function (item){
+			return (<a href={"#"+item+"/"} className="item">
+		        {item}
+		      </a>)
+		})
+		return items
+	},
 	render: function () {
-		return (<div>
+		return (
+			<div>
 			<div id="sidebar" className="ui simple sidebar inverted vertical menu" data-reactid=".0.0">
+				{this.getTopics()}
 			</div>
 			<div className="ui fixed inverted menu">
 			  <div className="ui container">
@@ -13,7 +29,6 @@ module.exports = React.createClass({
 			      <div className="item">
 			        Intermediate Javascript Study Guide
 			      </div>
-			    
 			    <div className="right menu">
 			      <div className="item">
 			        User

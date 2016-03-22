@@ -3,9 +3,7 @@ var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics"); 
 
 //add questions function
-function _addQuestionInput () {
-	$(".question-container").append("<div class='field'><label>Suggested Question:</label><textarea class='question' rows='2'></textarea></div><div class='field'><label>Provide an Answer:</label><textarea rows='3'></textarea></div>")
-}
+
 $(".add-question").on("click", function (){
 	alert();
 	_addQuestionInput ()
@@ -26,12 +24,27 @@ $("#suggestion").on('submit', function (e) {
       	var newTopicObj = topics.child(""+newTopic);
       	newTopicObj.set("no questions available")
       	currentTopic = newTopic;
+      	console.log(currentTopic)
       }
       else {
-      	oldTopic = _formatForSite(oldTopic)
-      	currentTopic = oldTopic;
+      	oldTopic = _formatForFB(oldTopic)
+      	if (oldTopic !== "default") {
+      		currentTopic = oldTopic;
+      	}
+      	console.log(oldTopic, currentTopic)
       }
       //add questions
+      $(".question-box").each (function(i, el){
+      	var quest = $(el).find(".question").val()
+      	var answer = $(el).find(".answer").val()
+      	if (!currentTopic) {
+      		alert(currentTopic, "Please select the topic where this questions belongs.")
+      	}
+      	else {
+      		topics.child(""+currentTopic).push({question: quest, answer: answer});
+      		console.log(currentTopic)
+      	}
+      });
 
 });
 
@@ -45,6 +58,9 @@ topics.on("value", function(snapshot) {//when a value changes
  	}
 });
 
+function _addQuestionInput () {
+	$(".question-container").append("<div class='question-box'><div class='field'><label>Suggested Question:</label><textarea class='question' rows='2'></textarea></div><div class='field'><label>Provide an Answer:</label><textarea class='answer' rows='3'></textarea></div></div>")
+}
 //deal with all caps
 function _formatForFB (str) {
 	str = str.replace(/[.,\/#!'$%\^&\*;:{}=\-_`~()]/g,"")

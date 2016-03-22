@@ -8,6 +8,7 @@ $(".add-question").on("click", function (){
 	alert();
 	_addQuestionInput ()
 })
+//if you have admin privilidges
 //set up a thing so select goes to default if new topic has something or vice-versa
 //or just thow error 
 //set up what to do if nothing is clicked
@@ -18,32 +19,42 @@ $("#suggestion").on('submit', function (e) {
       var oldTopic = $(".old-topic").val();
       var currentTopic;
       //add new topic
+      //if they've added a new topic 
       if (newTopic) {
-      	newTopic = _formatForSite(newTopic) 
+      	newTopic = _formatForFB(newTopic) 
       	//check to be sure it doesn't exist
-      	var newTopicObj = topics.child(""+newTopic);
-      	newTopicObj.set("no questions available")
+      	var isThere = $("#"+newTopic).val(); 
+      	//if it doesn't set
+      	if (!isThere) {
+      		var newTopicObj = topics.child(""+newTopic);
+      		newTopicObj.set("no questions available")
+      	}
+      	//otherwise just use the existing obj
       	currentTopic = newTopic;
-      	console.log(currentTopic)
       }
+      //otherwise grab old 
       else {
       	oldTopic = _formatForFB(oldTopic)
       	if (oldTopic !== "default") {
       		currentTopic = oldTopic;
       	}
-      	console.log(oldTopic, currentTopic)
       }
       //add questions
       $(".question-box").each (function(i, el){
       	var quest = $(el).find(".question").val()
       	var answer = $(el).find(".answer").val()
-      	if (!currentTopic) {
-      		alert(currentTopic, "Please select the topic where this questions belongs.")
+      	//if they give an question
+      	if (quest) {
+	      	//if there is a topic 
+	      	if (!currentTopic) {
+	      		alert(currentTopic, "Please select the topic where this questions belongs.")
+	      	}
+	      	else {
+	      		topics.child(""+currentTopic).push({question: quest, answer: answer});
+	      		console.log(currentTopic)
+	      	}
       	}
-      	else {
-      		topics.child(""+currentTopic).push({question: quest, answer: answer});
-      		console.log(currentTopic)
-      	}
+      
       });
 
 });
@@ -53,7 +64,7 @@ topics.on("value", function(snapshot) {//when a value changes
  	var obj = {};
  	for (topic in data) {
  		topic = _formatForSite (topic)
- 		$(".old-topic").append("<option>"+topic+"</option>")
+ 		$(".old-topic").append("<option id="+_formatForFB(topic)+">"+topic+"</option>")
  		$("#sidebar").append("<a class='item'>"+topic+'</a>')
  	}
 });

@@ -9,8 +9,9 @@ $(".add-question").on("click", function (){
 	_addQuestionInput ()
 })
 //if you have admin privilidges
-//set up a thing so select goes to default if new topic has something or vice-versa
-//or just thow error 
+//if an old topic is selected and 
+//add a prompt if all they do is select a topic 
+
 //set up what to do if nothing is clicked
 $("#suggestion").on('submit', function (e) {
       e.preventDefault();
@@ -56,14 +57,19 @@ $("#suggestion").on('submit', function (e) {
       	}
       
       });
+      //empting so it can 
+     
       this.reset();
       // frm.reset();  
 
 });
 
+//keeps adding 
 topics.on("value", function(snapshot) {//when a value changes  
  	var data = snapshot.val();
  	var obj = {};
+ 	$(".old-topic").html("<option value='default'>Choose a Topic</option>")
+ 	$("#sidebar").empty()
  	for (topic in data) {
  		topic = _formatForSite (topic)
  		$(".old-topic").append("<option id="+_formatForFB(topic)+">"+topic+"</option>")

@@ -52,30 +52,31 @@
 			    <div class="field">
 			    <label>Choose the Topic you would like to add to:</label>
 				    <select class="topic">
-				      <option value="">Command Line</option>
-				      <option value="1">Git</option>
-				      <option value="0">HTML & CSS</option>
+				   	  <option value="default">Choose a Topic</option>
+				      <option value="1">Command Line</option>
+				      <option value="2">Git</option>
+				      <option value="3">HTML & CSS</option>
 				    </select>
 				  </div>
 			  <div class="field">
 			    <label>Or Suggest a New Topic:</label>
-			    <input type="text" name="last-name" class="topic" placeholder="New Topic">
+			    <input type="text" name="last-name" class="new-topic" placeholder="New Topic">
 			  </div>
 			  <div class="field">
 			    <label>Suggested Question:</label>
-			    <textarea rows="2"></textarea>
+			    <textarea class="question" rows="2"></textarea>
 			  </div>
-			  <div class="field">
+			  <div  class="field">
 			    <label>Provide an Answer:</label>
 			    <textarea></textarea>
 			  </div>
 			  
-			  <div class="field">
+			  <!-- <div class="field">
 			    <div class="ui checkbox">
 			      <input type="checkbox" tabindex="0" class="hidden">
-			      <label>I do not have an answer</label>
+			      <label class="answer">I do not have an answer</label>
 			    </div>
-			  </div>
+			  </div> -->
 			    <input class="ui button" type="submit" value="Submit">
 			</form>
 		</div>

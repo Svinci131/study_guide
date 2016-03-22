@@ -1,7 +1,7 @@
 /* CURRENTLY IN: javascript/main.js */
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics"); 
-
+//Form Events
 //add questions function
 $(".add-question").on("click", function (){
 	alert();
@@ -63,7 +63,6 @@ $("#suggestion").on('submit', function (e) {
       //reset
       this.reset();
 });
-
 //keeps adding 
 topics.on("value", function(snapshot) {//when a value changes  
  	var data = snapshot.val();
@@ -73,8 +72,29 @@ topics.on("value", function(snapshot) {//when a value changes
  	for (topic in data) {
  		topic = _formatForSite (topic)
  		$(".old-topic").append("<option id="+_formatForFB(topic)+">"+topic+"</option>")
- 		$("#sidebar").append("<a class='item'>"+topic+'</a>')
+ 		$("#sidebar").append("<a class='item link-sidebar'>"+topic+'</a>')
  	}
+});
+
+//General Events
+$(".hamburger").on("click", function(){
+	$("#sidebar").css("visibility", "initial")
+});
+$("body").on("click", function(e){
+	var sidebar = $("#sidebar").css("visibility"); 
+	if (sidebar === "visible") {
+		if (!$(e.target).hasClass('hamburger')) {
+			if (!$(e.target).hasClass('link-sidebar')) {
+			console.log($(e.target).id)
+			$("#sidebar").css("visibility", "hidden")
+			}
+		}
+		
+		// if (e.target.id !== "sidebar") {
+		// 	$("#sidebar").css("visibility", "hidden")
+		// }
+	}
+	
 });
 
 function _addQuestionInput () {

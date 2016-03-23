@@ -16,12 +16,7 @@ module.exports = React.createClass({
     },
 	getTopics: function () {
 		var obj = this.props.data;
-		var arr = Object.keys(obj).reduce(function( arr, currentItem) {
-			arr.push( currentItem);
-			return arr;
-		}, []);
-		
-		var items = arr.map (function (item){
+		var items = Object.keys(obj).map (function (item){
 			return (<a href={"#learn/"+item} className="item">
 		        {gen._formatForSite(item)}
 		      </a>)

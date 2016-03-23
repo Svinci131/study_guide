@@ -21,7 +21,6 @@ var routes = {
 		});
 	},
 	'/learn/:id': function(id) {
-
 		topics.on("value", function(snapshot) {//when a value changes  
 		 	var data = snapshot.val();
 		 	render().renderMenu(data)

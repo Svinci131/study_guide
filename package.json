@@ -1,0 +1,32 @@
+{
+  "name": "intermediate_js_studyguide",
+  "version": "1.0.0",
+  "description": "//Basic site to cleanly store my study info",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Svinci131/study_guide.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Svinci131/study_guide/issues"
+  },
+  "homepage": "https://github.com/Svinci131/study_guide#readme",
+  "dependencies": {
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0",
+    "browserify": "^13.0.0",
+    "director": "^1.2.8",
+    "gulp": "^3.9.1",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^1.5.3",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

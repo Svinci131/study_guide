@@ -1,11 +1,12 @@
 var React = require('react');
-// var gen = require('./gen_functions');
+var qaItem = require("./qaItem");
+var gen = require('./gen_functions');
 
-import {
-	_formatForSite,
-	_formatForFB,
-} from './gen_functions';
-import Hello from './hello';
+// import {
+// 	_formatForSite,
+// 	_formatForFB,
+// } from './gen_functions';
+// import Hello from './hello';
 
 module.exports = React.createClass({
 	getInitialState: function () {
@@ -35,7 +36,7 @@ module.exports = React.createClass({
 			return (
 				<div>
 					<div className="active title">
-					    <i onClick={this.toggle}></i>
+					    <i onClick={(e) => this.toggle(e)}></i>
 							{obj[el].question}
 					</div>
 					<div className="active content">
@@ -49,7 +50,6 @@ module.exports = React.createClass({
 		
 		return (<div>
 			<h2 className="ui dividing header">{_formatForSite(this.props.id)}</h2>
-			<Hello />
 			<div className="ui accordion">
 			{this.qAndA()}
 			</div>

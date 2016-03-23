@@ -1,5 +1,7 @@
+var Router = require('director').Router;
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Home = require('./home');
 var Menu = require('./menu');
 var Learn = require('./learn');
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
@@ -10,17 +12,28 @@ topics.on("value", function(snapshot) {//when a value changes
  	render (data)
 });
 
+
+
 var routes = {
-	'/learn': function() {
+	'/home': function() {
+		console.log("foo")
 		ReactDOM.render(
-			<Learn data={data} />,
+			<Home />,
+				document.getElementById('container')
+		);
+	},
+	'/learn/:id': function(id) {
+		console.log(id)
+		ReactDOM.render(
+			<Learn id={id} />,
 				document.getElementById('container')
 		);
 	}
+	
 }
 
 var router = Router( routes );
-router.init('/learn');
+router.init('/home');
 
 function render (data) {
 	ReactDOM.render(

@@ -42,7 +42,7 @@ module.exports = React.createClass({
 			      <i className="content icon hamburger"></i>
 			    </a>
 			      <div className="item">
-			        Intermediate Javascript Study Guide
+			        <a href="#home" >Intermediate Javascript Study Guide</a>
 			      </div>
 			    <div className="right menu">
 			      <div className="item">

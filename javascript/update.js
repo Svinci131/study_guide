@@ -4,7 +4,6 @@ var topics = myDataRef.child("topics");
 //Form Events
 //add questions function
 $(".add-question").on("click", function (){
-	alert();
 	_addQuestionInput ()
 })
 //if you have admin privilidges
@@ -17,14 +16,17 @@ $("#suggestion").on('submit', function (e) {
       var currentTopic;
       //add new topic
       //if they've added a new topic 
+
       if (newTopic) {
-      	if (oldTopic !== "Default") {
+      	if (oldTopic !== "default") {
       		alert("Please select only one topic.")
       	}
+
       	else {
       		newTopic = _formatForFB(newTopic) 
 	      	//check to be sure it doesn't exist
 	      	var isThere = $("#"+newTopic).val(); 
+	      	
 	      	//if it doesn't set
 	      	if (!isThere) {
 	      		var newTopicObj = topics.child(""+newTopic);
@@ -41,6 +43,9 @@ $("#suggestion").on('submit', function (e) {
       	if (oldTopic !== "default") {
       		currentTopic = oldTopic;
       	}
+      }
+      if (!currentTopic) {
+      	alert();
       }
       //add questions
       $(".question-box").each (function(i, el){

@@ -7,27 +7,27 @@ var Learn = require('./learn');
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics"); 
 
-topics.on("value", function(snapshot) {//when a value changes  
- 	var data = snapshot.val();
- 	render (data)
-});
 
 
+//on load or when fire base updates 
+//render 
+//we want to render on route- 
 
 var routes = {
 	'/home': function() {
-		console.log("foo")
-		ReactDOM.render(
-			<Home />,
-				document.getElementById('container')
-		);
+		topics.on("value", function(snapshot) {//when a value changes  
+		 	var data = snapshot.val();
+		 	render().renderMenu(data)
+		});
 	},
 	'/learn/:id': function(id) {
-		console.log(id)
-		ReactDOM.render(
-			<Learn id={id} />,
-				document.getElementById('container')
-		);
+
+		topics.on("value", function(snapshot) {//when a value changes  
+		 	var data = snapshot.val();
+		 	render().renderMenu(data)
+		 	render().renderLearn(id, data)
+		});
+		
 	}
 	
 }
@@ -36,8 +36,19 @@ var router = Router( routes );
 router.init('/home');
 
 function render (data) {
-	ReactDOM.render(
-	<Menu data={data} />,
-		document.getElementById('Menu')
-	);
+	var obj = {
+		renderMenu: function (data) {
+			ReactDOM.render(
+				<Menu data={data} />,
+					document.getElementById('Menu')
+			);
+		},
+		renderLearn: function (id, data) {
+			ReactDOM.render(
+			<Learn id={id} data={data}/>,
+				document.getElementById('container')
+			);
+		}
+	}
+	return obj;	
 }

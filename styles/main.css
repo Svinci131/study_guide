@@ -2,7 +2,12 @@
 .masthead.segment {
     padding-top: 5em;
 }
-
+.visible {
+	display: block!important;
+}
+.invisible {
+	display: none!important;
+}
 /*#sidebar {
 	visibility: initial!important;
 }*/

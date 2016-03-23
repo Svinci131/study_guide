@@ -3,7 +3,7 @@ var React = require('react');
 module.exports = React.createClass ({
 	getInitialState: function () {
 		return {
-			arrow: true
+			arrow: false
 		}
 	},
 	toggleUpdate: function () {
@@ -29,22 +29,25 @@ module.exports = React.createClass ({
 		
 	},
 	toggleDraw: function (argument) {
-		var arrowClass =  "caret down icon"
-		var answerClass; 
-		if (!this.state.arrow){
-			arrowClass =  "caret right icon"
+		var styles = {
+			arrowClass: "caret down icon",
+			answerClass: "visible active content"
 		}
-		return arrowClass;
+		if (!this.state.arrow){
+			styles.arrowClass =  "caret right icon";
+			styles.answerClass= "invisible active content";
+		}
+		return styles;
 	},
 	render: function (){
 		var obj = this.props.data
 		return (
 				<div>
 					<div className="active title">
-					    <i onClick={(e) => this.toggleUpdate(e)} className={this.toggleDraw()}></i>
+					    <i onClick={(e) => this.toggleUpdate(e)} className={this.toggleDraw().arrowClass}></i>
 							{obj.question}
 					</div>
-					<div className="active content">
+					<div className={this.toggleDraw().answerClass}>
 				    	<p>{obj.answer}</p>
 				 	</div>
 				</div>)

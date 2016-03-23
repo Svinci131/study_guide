@@ -1,6 +1,18 @@
 var React = require('react');
 
 module.exports = React.createClass({
+	componentDidMount: function () {
+        document.body.addEventListener('click', this.myHandler);
+    },
+    componentDidUnmount: function () {
+        document.body.removeEventListener('click', this.myHandler);
+    },
+    myHandler: function () {
+        var sidebarVisibility = document.getElementById("sidebar").style.visibility
+        if (sidebarVisibility === "initial"){
+        	document.getElementById("sidebar").style.visibility = "hidden"
+        }
+    },
 	getTopics: function () {
 		var obj = this.props.data;
 		var arr = Object.keys(obj).reduce(function( arr, currentItem) {
@@ -9,11 +21,14 @@ module.exports = React.createClass({
 		}, []);
 		
 		var items = arr.map (function (item){
-			return (<a href={"#"+item+"/"} className="item">
+			return (<a href={"#learn/"+item} className="item">
 		        {item}
 		      </a>)
 		})
 		return items
+	},
+	showSideBar: function () {
+		document.getElementById("sidebar").style.visibility = "initial"
 	},
 	render: function () {
 		return (
@@ -23,7 +38,7 @@ module.exports = React.createClass({
 			</div>
 			<div className="ui fixed inverted menu">
 			  <div className="ui container">
-			    <a className="launch icon item">
+			    <a onClick={this.showSideBar} className="launch icon item">
 			      <i className="content icon hamburger"></i>
 			    </a>
 			      <div className="item">

@@ -7,3 +7,14 @@
 	
 //Set up Menu
   
+//Set up Routes to load different pages
+
+
+//main data fire base
+//rerender on value 
+
+///menu- topics
+///Title- topics
+//questions- topics 
+
+//initially

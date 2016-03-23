@@ -1,4 +1,5 @@
 var React = require('react');
+var gen = require('./gen_functions')
 
 module.exports = React.createClass({
 	componentDidMount: function () {
@@ -22,7 +23,7 @@ module.exports = React.createClass({
 		
 		var items = arr.map (function (item){
 			return (<a href={"#learn/"+item} className="item">
-		        {item}
+		        {gen._formatForSite(item)}
 		      </a>)
 		})
 		return items

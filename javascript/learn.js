@@ -1,5 +1,5 @@
 var React = require('react');
-var qaItem = require("./qaItem");
+var QAItem = require("./qaItem");
 var gen = require('./gen_functions');
 
 // import {
@@ -9,47 +9,18 @@ var gen = require('./gen_functions');
 // import Hello from './hello';
 
 module.exports = React.createClass({
-	getInitialState: function () {
-		return {
-			arrow: true
-		}
-	},
-	toggle: function () {
-		var current; 
-		if (this.state.arrow){
-
-			this.setState({
-				arrow: false
-			}, function(){
-				current = this.state.arrow
-
-			})
-
-		}
-		return current;
-		
-		// body...
-	},
 	qAndA: function (className) {
 		var obj = this.props.data[this.props.id];
 		var questions = Object.keys(obj).map(function(el, i){
 			return (
-				<div>
-					<div className="active title">
-					    <i onClick={(e) => this.toggle(e)}></i>
-							{obj[el].question}
-					</div>
-					<div className="active content">
-				    	<p>{obj[el].answer}</p>
-				 	</div>
-				</div>)
+				<QAItem data={obj[el]} />)
 		}.bind(this));
 		return questions
 	},
 	render: function () {
 		
 		return (<div>
-			<h2 className="ui dividing header">{_formatForSite(this.props.id)}</h2>
+			<h2 className="ui dividing header">{gen._formatForSite(this.props.id)}</h2>
 			<div className="ui accordion">
 			{this.qAndA()}
 			</div>

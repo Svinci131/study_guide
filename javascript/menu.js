@@ -16,20 +16,21 @@ module.exports = React.createClass({
     },
 	getTopics: function () {
 		var obj = this.props.data;
-		var items = Object.keys(obj).map (function (item){
+		var items = Object.keys(obj).map(function (item){
 			return (<a href={"#learn/"+item} className="item">
 		        {gen._formatForSite(item)}
 		      </a>)
-		})
-		return items
+		});
+		return items;
 	},
 	showSideBar: function () {
-		document.getElementById("sidebar").style.visibility = "initial"
+		//document.getElementById("sidebar").style.visibility = "initial"
+		React.findDOMNode( this.refs.sidebar ).style.visibility = "initial";
 	},
 	render: function () {
 		return (
 			<div>
-			<div id="sidebar" className="ui simple sidebar inverted vertical menu" data-reactid=".0.0">
+			<div id="sidebar" className="ui simple sidebar inverted vertical menu" ref="sidebar">
 				{this.getTopics()}
 			</div>
 			<div className="ui fixed inverted menu">

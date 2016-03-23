@@ -8,7 +8,7 @@ var babelify = require('babelify');
 
 gulp.task('browserify', function() {
     return browserify('javascript/main.js')
-    	.transform( "babelify", {presets: ["react"]})
+    	.transform( "babelify", {presets: ["react","es2015"]})
         .bundle()
         .pipe( source( 'javascript/bundled.js' ) )
         // we take our browserified stream and run it through

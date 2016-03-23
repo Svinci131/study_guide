@@ -64,20 +64,21 @@ $("#suggestion").on('submit', function (e) {
       this.reset();
 });
 //keeps adding 
-// topics.on("value", function(snapshot) {//when a value changes  
-//  	var data = snapshot.val();
-//  	var obj = {};
-//  	$(".old-topic").html("<option value='default'>Choose a Topic</option>")
-//  	// $("#sidebar").empty()
-//  	for (topic in data) {
-//  		topic = _formatForSite (topic)
-//  		$(".old-topic").append("<option id="+_formatForFB(topic)+">"+topic+"</option>")
-//  		// $("#sidebar").append("<a class='item link-sidebar'>"+topic+'</a>')
-//  	}
-// });
+topics.on("value", function(snapshot) {//when a value changes  
+ 	var data = snapshot.val();
+ 	var obj = {};
+ 	$(".old-topic").html("<option value='default'>Choose a Topic</option>")
+ 	$("#sidebar").empty()
+ 	for (topic in data) {
+ 		topic = _formatForSite (topic)
+ 		$(".old-topic").append("<option id="+_formatForFB(topic)+">"+topic+"</option>")
+ 		$("#sidebar").append("<a class='item link-sidebar'>"+topic+'</a>')
+ 	}
+});
 //General Events
 //side bar
 $(".hamburger").on("click", function(){
+	console.log("test")
 	$("#sidebar").css("visibility", "initial")
 });
 $("body").on("click", function(e){

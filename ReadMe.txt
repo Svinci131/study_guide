@@ -1,20 +1,9 @@
-//Basic site to cleanly store my study info 
-
-//upload pages 
-//Set up Fire Base
-	//Create Section
-	//Add Items to an existing Section
-	
-//Set up Menu
-  
-//Set up Routes to load different pages
+Hello! 
 
 
-//main data fire base
-//rerender on value 
+This is a basic question and answer study guide I developed at Fullstack Acedemy. 
 
-///menu- topics
-///Title- topics
-//questions- topics 
+It was built using React and the Director Routing Library on the front end and a Firebase DB. The styles come from Semantic UI. 
 
-//initially
+All are welcome to add questions and answers. 
+

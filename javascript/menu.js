@@ -43,13 +43,7 @@ module.exports = React.createClass({
 			      </div>
 			    <div className="right menu">
 			      <div className="item">
-			        User
-			      </div>
-			      <div className="item">
 			        <a href="update.html">Add</a>
-			      </div>
-			      <div className="vertically fitted borderless item">
-			        <iframe className="github" src="http://ghbtns.com/github-btn.html?user=semantic-org&amp;repo=semantic-ui&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
 			      </div>
 			    </div>
 			  </div>

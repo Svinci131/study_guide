@@ -77,7 +77,7 @@ topics.on("value", function(snapshot) {//when a value changes
  	for (topic in data) {
  		topic = _formatForSite (topic)
  		$(".old-topic").append("<option id="+_formatForFB(topic)+">"+topic+"</option>")
- 		$("#sidebar").append("<a class='item link-sidebar'>"+topic+'</a>')
+ 		$("#sidebar").append("<a href='index.html#learn/"+_formatForFB(topic)+"' class='item link-sidebar'>"+topic+'</a>')
  	}
 });
 //General Events

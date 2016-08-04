@@ -1,6 +1,7 @@
 /* CURRENTLY IN: javascript/main.js */
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics"); 
+var studyGuideUrl = "http://svinci131.github.io/study_guide/index.html#learn/"
 //Form Events
 //add questions function
 $(".add-question").on("click", function (){
@@ -59,14 +60,16 @@ $("#suggestion").on('submit', function (e) {
 	      	}
 	      	else {
 	      		topics.child(""+currentTopic).push({question: quest, answer: answer});
-	      		console.log(currentTopic)
+	      		
 	      	}
       	}
 
       
       });
+      window.location = studyGuideUrl+currentTopic;
       //reset
-      this.reset();
+      // this.reset();
+
 });
 //keeps adding 
 topics.on("value", function(snapshot) {//when a value changes  

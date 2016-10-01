@@ -1,5 +1,6 @@
 var React = require('react');
-var gen = require('./gen_functions')
+var gen = require('./gen_functions');
+var Search = require("./search.js");
 
 module.exports = React.createClass({
 	componentDidMount: function () {
@@ -39,9 +40,10 @@ module.exports = React.createClass({
 			      <i className="content icon hamburger"></i>
 			    </a>
 			      <div className="item">
-			        <a href="#home" >Intermediate Javascript Study Guide</a>
+			        <a href="#home">Intermediate Javascript Study Guide</a>
 			      </div>
 			    <div className="right menu">
+			      <Search />
 			      <div className="item">
 			        <a href="update.html">Add</a>
 			      </div>

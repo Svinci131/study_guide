@@ -1,7 +1,7 @@
 var Router = require('director').Router;
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Home = require('./home');
+// var Home = require('./home');
 var Menu = require('./menu');
 var Learn = require('./learn');
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
@@ -17,6 +17,7 @@ var routes = {
 	'/home': function() {
 		topics.on("value", function(snapshot) {//when a value changes  
 		 	var data = snapshot.val();
+		 	console.log("here")
 		 	render().renderMenu(data)
 		});
 	},

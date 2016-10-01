@@ -13,7 +13,7 @@ gulp.task('browserify', function() {
         .pipe( source( 'javascript/bundled.js' ) )
         // we take our browserified stream and run it through
         // uglify's minifier
-        .pipe( streamify( uglify() ) )
+        // .pipe( streamify( uglify() ) )
         .pipe( gulp.dest('./') );
 });
 

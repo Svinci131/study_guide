@@ -215,8 +215,8 @@ module.exports = React.createClass({
 			},
 			add: function add(event) {
 						if (event.keyCode == 13) {
-									router.get('/search', event.target.value);
-									//window.location = "file:///Users/samanthavinci/Desktop/study_guide/index.html#/search/"+event.target.value
+									//router.get('/search', event.target.value);
+									window.location = "file:///Users/samanthavinci/Desktop/study_guide/index.html#/search/" + event.target.value;
 									//window.location = "http://svinci131.github.io/study_guide/index.html/#search/"+event.target.value
 						}
 			}

@@ -1,6 +1,7 @@
 var React = require('react');
 var gen = require('../utils');
 var Search = require("./search.js");
+var Sidebar = require("./menu/sidebar");
 
 module.exports = React.createClass({
 	componentDidMount: function () {
@@ -15,24 +16,14 @@ module.exports = React.createClass({
         	document.getElementById("sidebar").style.visibility = "hidden"
         }
     },
-	getTopics: function () {
-		var items = this.props.topics.map(function (item){
-			return (<a href={"#learn/"+item} className="item">
-		        {gen._formatForSite(item)}
-		      </a>)
-		});
-		return items;
-	},
 	showSideBar: function () {
-		//document.getElementById("sidebar").style.visibility = "initial"
+		document.getElementById("sidebar").style.visibility = "initial"
 		React.findDOMNode( this.refs.sidebar ).style.visibility = "initial";
 	},
 	render: function () {
 		return (
 			<div>
-			<div id="sidebar" className="ui simple sidebar inverted vertical menu" ref="sidebar">
-				{this.getTopics()}
-			</div>
+			<Sidebar topics={this.props.topics} />
 			<div className="ui fixed inverted menu">
 			  <div className="ui container">
 			    <a onClick={this.showSideBar} className="launch icon item">

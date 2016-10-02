@@ -14,13 +14,19 @@ var Load = {
 	}, 
 	Welcome: function (topics){
 		ReactDOM.render(
-			<Welcome topics={topics}/>,
+			<Welcome topics= { topics } />,
+			document.getElementById('container')
+		);
+	},
+	Learn: function (data, id) {
+		ReactDOM.render(
+			<Learn id= { id } data= { data } />,
 			document.getElementById('container')
 		);
 	}
 
 }
 
-module.exports = function render (page, data) {
-	Load[page](data);
+module.exports = function render (page, data, id) {
+	Load[page](data, id);
 }

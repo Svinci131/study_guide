@@ -1,7 +1,10 @@
 var React = require('react');
+var Menu = require("./menu");
 module.exports = React.createClass({
 	render: function () {
-		return (<div><h1>Welcome!</h1>
+		return (<div>
+			<Menu data={this.props.data} />
+			<h1>Welcome!</h1>
 		</div>)
 	}
 });

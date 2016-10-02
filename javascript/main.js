@@ -13,7 +13,10 @@ var routes = {
 	'/home': function() {
 		topics.on("value", function(snapshot) {//when a value changes  
 		 	var data = snapshot.val();
-		 	render().renderMenu(data);
+		 	ReactDOM.render(
+				<Welcome data={data}/>,
+				document.getElementById('container')
+			);
 		});
 	},
 	'/learn/:id': function(id) {

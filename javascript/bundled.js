@@ -243,20 +243,22 @@ module.exports = React.createClass({
 });
 
 },{"react":167}],6:[function(require,module,exports){
-'use strict';
+"use strict";
 
 var React = require('react');
+var Menu = require("./menu");
 module.exports = React.createClass({
-	displayName: 'exports',
+	displayName: "exports",
 
 	render: function render() {
 		return React.createElement(
-			'div',
+			"div",
 			null,
+			React.createElement(Menu, { data: this.props.data }),
 			React.createElement(
-				'h1',
+				"h1",
 				null,
-				'Welcome!'
+				"Welcome!"
 			)
 		);
 	}
@@ -266,7 +268,7 @@ module.exports = React.createClass({
 // 		// For more information please contact: <a href="svinci131@gmail.com"</a></p>
 // 		// </p>
 
-},{"react":167}],7:[function(require,module,exports){
+},{"./menu":2,"react":167}],7:[function(require,module,exports){
 'use strict';
 
 var Router = require('director').Router;
@@ -285,7 +287,7 @@ var routes = {
 		topics.on("value", function (snapshot) {
 			//when a value changes 
 			var data = snapshot.val();
-			render().renderMenu(data);
+			ReactDOM.render(React.createElement(Welcome, { data: data }), document.getElementById('container'));
 		});
 	},
 	'/learn/:id': function learnId(id) {

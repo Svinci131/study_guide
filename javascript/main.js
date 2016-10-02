@@ -19,7 +19,11 @@ var routes = {
 		});
 	},
 	'/search/:query': function(query) {
-		search(query);
+		myDataRef.on("value", function(snapshot) {//when a value changes  
+			var data = snapshot.val().topics;
+			var results = search(data, query);
+			console.log("here", results);
+		});
 		// Load("Search");
 	}
 };

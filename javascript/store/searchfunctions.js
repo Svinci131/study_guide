@@ -2,12 +2,11 @@
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics"); 
 
-function search (query) {
-	myDataRef.on("value", function(snapshot) {//when a value changes  
-		var data = snapshot.val().topics;
-		Object.keys(data).reduce(function(arr, topic) {
+function search (data, query) {
+	// myDataRef.on("value", function(snapshot) {//when a value changes  
+	// 	var data = snapshot.val().topics;
+		var results = Object.keys(data).reduce(function(arr, topic) {
 			var topicObj = data[topic];
-
 			 	var matches = Object.keys(topicObj).reduce(function(arr, item) {
 					var answer = topicObj[item].answer; 
 					var question = topicObj[item].question;
@@ -16,20 +15,22 @@ function search (query) {
 				    var answerM = contains (question, query);
 				    // console.log(answer, question, topic);
 					if (questionM > -1 || answerM > -1) {
-						var obj = {
+						arr.push ({
 							topic: topic, 
 							answer: answer, 
 							question: question
-						}
+						});
 					}
-			// 	//console.log(item, query);
+					return arr;
 				}, []);
-			
+
+				console.log(matches);
+			return arr.concat(matches);
+
 		}, []); 	
-		//loop through each topic
-		//loop through each q and a letter by letter until u find match
-		
-	});
+
+		return results
+	// });
 }
 
 function contains (string, query) {

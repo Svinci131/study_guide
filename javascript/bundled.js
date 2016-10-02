@@ -321,7 +321,12 @@ var routes = {
 		});
 	},
 	'/search/:query': function searchQuery(query) {
-		search(query);
+		myDataRef.on("value", function (snapshot) {
+			//when a value changes 
+			var data = snapshot.val().topics;
+			var results = search(data, query);
+			console.log("here", results);
+		});
 		// Load("Search");
 	}
 };
@@ -363,37 +368,38 @@ module.exports = function render(page, data, id) {
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics");
 
-function search(query) {
-	myDataRef.on("value", function (snapshot) {
-		//when a value changes 
-		var data = snapshot.val().topics;
-		Object.keys(data).reduce(function (arr, topic) {
-			var topicObj = data[topic];
-
-			var matches = Object.keys(topicObj).reduce(function (arr, item) {
-				var answer = topicObj[item].answer;
-				var question = topicObj[item].question;
-				////match
-				var questionM = contains(question, query);
-				var answerM = contains(question, query);
-				// console.log(answer, question, topic);
-				if (questionM > -1 || answerM > -1) {
-					console.log(answer, question, topic);
-					var obj = {
-						topic: topic,
-						answer: answer,
-						question: question
-					};
-				}
-				// 	//console.log(item, query);
-			}, []);
+function search(data, query) {
+	// myDataRef.on("value", function(snapshot) {//when a value changes 
+	// 	var data = snapshot.val().topics;
+	var results = Object.keys(data).reduce(function (arr, topic) {
+		var topicObj = data[topic];
+		var matches = Object.keys(topicObj).reduce(function (arr, item) {
+			var answer = topicObj[item].answer;
+			var question = topicObj[item].question;
+			////match
+			var questionM = contains(question, query);
+			var answerM = contains(question, query);
+			// console.log(answer, question, topic);
+			if (questionM > -1 || answerM > -1) {
+				arr.push({
+					topic: topic,
+					answer: answer,
+					question: question
+				});
+			}
+			return arr;
 		}, []);
-		//loop through each topic
-		//loop through each q and a letter by letter until u find match
-	});
+
+		console.log(matches);
+		return arr.concat(matches);
+	}, []);
+
+	return results;
+	// });
 }
 
 function contains(string, query) {
+	string = string.toLowerCase();
 	return string.indexOf(query);
 }
 

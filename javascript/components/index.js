@@ -1,9 +1,9 @@
-var Menu = require('./components/menu');
-var Learn = require('./components/learn');
-var Search = require('./components/searchResults');
-var Welcome = require('./components/welcome');
+var Menu = require('./menu');
+var Learn = require('./learn');
+var Search = require('./searchResults');
+var Welcome = require('./welcome');
 
-module.export = {
+module.exports = {
 	Menu: Menu, 
 	Learn: Learn, 
 	Search: Search, 

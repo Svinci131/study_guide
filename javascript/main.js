@@ -1,22 +1,18 @@
 var Router = require('director').Router;
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Menu = require('./components/menu');
-var Learn = require('./components/learn');
-var Search = require('./components/searchResults');
-var Welcome = require('./components/welcome');
+// var Learn = require('./components/learn');
+// var Search = require('./components/searchResults');
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics"); 
-var data = null; 
+var Load = require("./renderer");
 
 var routes = {
 	'/home': function() {
 		topics.on("value", function(snapshot) {//when a value changes  
 		 	var data = snapshot.val();
-		 	ReactDOM.render(
-				<Welcome data={data}/>,
-				document.getElementById('container')
-			);
+		 	topics = Object.keys(data);
+		 	Load("Welcome", topics);
 		});
 	},
 	'/learn/:id': function(id) {
@@ -27,10 +23,7 @@ var routes = {
 		});
 	},
 	'/search/:query': function(query) {
-		ReactDOM.render(
-			<Search />,
-			document.getElementById('container')
-		);
+		Load("Search");
 	}
 };
 

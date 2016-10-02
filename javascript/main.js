@@ -2,7 +2,8 @@ var Router = require('director').Router;
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics"); 
 var Load = require("./renderer");
-
+var search = require("./store/searchFunctions").search;
+;
 var routes = {
 	'/home': function() {
 		topics.on("value", function(snapshot) {//when a value changes  
@@ -18,7 +19,8 @@ var routes = {
 		});
 	},
 	'/search/:query': function(query) {
-		Load("Search");
+		search(query);
+		// Load("Search");
 	}
 };
 

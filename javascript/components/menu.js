@@ -1,5 +1,5 @@
 var React = require('react');
-var gen = require('./gen_functions');
+var gen = require('../utils');
 var Search = require("./search.js");
 
 module.exports = React.createClass({

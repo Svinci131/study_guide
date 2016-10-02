@@ -1,12 +1,6 @@
 var React = require('react');
 var QAItem = require("./qaItem");
-var gen = require('./gen_functions');
-
-// import {
-// 	_formatForSite,
-// 	_formatForFB,
-// } from './gen_functions';
-// import Hello from './hello';
+var gen = require("../utils");
 
 module.exports = React.createClass({
 	qAndA: function (className) {

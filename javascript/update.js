@@ -22,7 +22,6 @@ $("#suggestion").on('submit', function (e) {
       	if (oldTopic !== "default") {
       		alert("Please select only one topic.")
       	}
-
       	else {
       		newTopic = _formatForFB(newTopic) 
 	      	//check to be sure it doesn't exist
@@ -67,10 +66,8 @@ $("#suggestion").on('submit', function (e) {
       
       });
       window.location = studyGuideUrl+currentTopic;
-      //reset
-      // this.reset();
-
 });
+
 //keeps adding 
 topics.on("value", function(snapshot) {//when a value changes  
  	var data = snapshot.val();

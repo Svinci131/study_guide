@@ -1,36 +1,35 @@
 var Router = require('director').Router;
 var React = require('react');
 var ReactDOM = require('react-dom');
-// var Home = require('./home');
-var Menu = require('./menu');
-var Learn = require('./learn');
+var Menu = require('./components/menu');
+var Learn = require('./components/learn');
+var Search = require('./components/searchResults');
+var Welcome = require('./components/welcome');
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics"); 
-
-
-
-//on load or when fire base updates 
-//render 
-//we want to render on route- 
+var data = null; 
 
 var routes = {
 	'/home': function() {
 		topics.on("value", function(snapshot) {//when a value changes  
 		 	var data = snapshot.val();
-		 	console.log("here")
-		 	render().renderMenu(data)
+		 	render().renderMenu(data);
 		});
 	},
 	'/learn/:id': function(id) {
 		topics.on("value", function(snapshot) {//when a value changes  
 		 	var data = snapshot.val();
-		 	render().renderMenu(data)
-		 	render().renderLearn(id, data)
+		 	render().renderMenu(data);
+		 	render().renderLearn(id, data);
 		});
-		
+	},
+	'/search/:query': function(query) {
+		ReactDOM.render(
+			<Search />,
+			document.getElementById('container')
+		);
 	}
-	
-}
+};
 
 var router = Router( routes );
 router.init('/home');

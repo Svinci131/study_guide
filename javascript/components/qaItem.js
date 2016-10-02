@@ -9,12 +9,10 @@ module.exports = React.createClass ({
 	toggleUpdate: function () {
 		var current; 
 		if (this.state.arrow){
-			console.log("here", this.state.arrow)
 			this.setState({
 				arrow: false
 			}, function(){
 				current = "caret left icon"
-				console.log("here", this.state.arrow)
 				return current;
 			});
 		}

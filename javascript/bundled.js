@@ -18,6 +18,7 @@ module.exports = {
 
 var React = require('react');
 var QAItem = require("./qaItem");
+var Menu = require("./navBar/menu");
 var gen = require("../utils");
 
 module.exports = React.createClass({
@@ -31,10 +32,11 @@ module.exports = React.createClass({
 		return questions;
 	},
 	render: function render() {
-
+		console.log(Object.keys(this.props.data));
 		return React.createElement(
 			"div",
 			null,
+			React.createElement(Menu, { topics: Object.keys(this.props.data) }),
 			React.createElement(
 				"h2",
 				{ className: "ui dividing header" },
@@ -49,7 +51,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../utils":11,"./qaItem":6,"react":170}],3:[function(require,module,exports){
+},{"../utils":11,"./navBar/menu":3,"./qaItem":6,"react":170}],3:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -195,12 +197,10 @@ module.exports = React.createClass({
 	toggleUpdate: function toggleUpdate() {
 		var current;
 		if (this.state.arrow) {
-			console.log("here", this.state.arrow);
 			this.setState({
 				arrow: false
 			}, function () {
 				current = "caret left icon";
-				console.log("here", this.state.arrow);
 				return current;
 			});
 		} else {
@@ -298,8 +298,6 @@ module.exports = React.createClass({
 'use strict';
 
 var Router = require('director').Router;
-var React = require('react');
-var ReactDOM = require('react-dom');
 var myDataRef = new Firebase('https://study-guide.firebaseio.com/');
 var topics = myDataRef.child("topics");
 var Load = require("./renderer");
@@ -309,8 +307,8 @@ var routes = {
 		topics.on("value", function (snapshot) {
 			//when a value changes 
 			var data = snapshot.val();
-			topics = Object.keys(data);
-			Load("Welcome", topics);
+			data = Object.keys(data);
+			Load("Welcome", data);
 		});
 	},
 	'/learn/:id': function learnId(id) {
@@ -328,7 +326,7 @@ var routes = {
 var router = Router(routes);
 router.init('/home');
 
-},{"./renderer":10,"director":12,"react":170,"react-dom":41}],10:[function(require,module,exports){
+},{"./renderer":10,"director":12}],10:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -358,18 +356,6 @@ module.exports = function render(page, data, id) {
 },{"./components":1,"react":170,"react-dom":41}],11:[function(require,module,exports){
 "use strict";
 
-// export function _formatForFB( str ) {
-// 	str = str.replace(/[.,\/#!'$%\^&\*;:{}=\-_`~()]/g,"")
-// 	str = str.replace(" ","_").toLowerCase();
-// 	return str;
-// }
-
-// export function _formatForSite( str ) {
-// 	return str.split('_').map((txt) => {
-// 		txt = txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-// 		return txt;
-// 	}).join( " " );
-// }
 module.exports = {
 	_formatForFB: function _formatForFB(str) {},
 	_formatForSite: function _formatForSite(str) {

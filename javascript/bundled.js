@@ -1,7 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var Menu = require('./menu');
+var Menu = require('./navBar/menu.js');
 var Learn = require('./learn');
 var Search = require('./searchResults');
 var Welcome = require('./welcome');
@@ -13,7 +13,7 @@ module.exports = {
 	Welcome: Welcome
 };
 
-},{"./learn":2,"./menu":3,"./searchResults":7,"./welcome":8}],2:[function(require,module,exports){
+},{"./learn":2,"./navBar/menu.js":3,"./searchResults":7,"./welcome":8}],2:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -49,16 +49,15 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../utils":11,"./qaItem":5,"react":170}],3:[function(require,module,exports){
-'use strict';
+},{"../utils":11,"./qaItem":6,"react":170}],3:[function(require,module,exports){
+"use strict";
 
 var React = require('react');
-var gen = require('../utils');
 var Search = require("./search.js");
-var Sidebar = require("./menu/sidebar");
+var Sidebar = require("./sidebar");
 
 module.exports = React.createClass({
-	displayName: 'exports',
+	displayName: "exports",
 
 	componentDidMount: function componentDidMount() {
 		document.body.addEventListener('click', this.myHandler);
@@ -78,40 +77,40 @@ module.exports = React.createClass({
 	},
 	render: function render() {
 		return React.createElement(
-			'div',
+			"div",
 			null,
 			React.createElement(Sidebar, { topics: this.props.topics }),
 			React.createElement(
-				'div',
-				{ className: 'ui fixed inverted menu' },
+				"div",
+				{ className: "ui fixed inverted menu" },
 				React.createElement(
-					'div',
-					{ className: 'ui container' },
+					"div",
+					{ className: "ui container" },
 					React.createElement(
-						'a',
-						{ onClick: this.showSideBar, className: 'launch icon item' },
-						React.createElement('i', { className: 'content icon hamburger' })
+						"a",
+						{ onClick: this.showSideBar, className: "launch icon item" },
+						React.createElement("i", { className: "content icon hamburger" })
 					),
 					React.createElement(
-						'div',
-						{ className: 'item' },
+						"div",
+						{ className: "item" },
 						React.createElement(
-							'a',
-							{ href: '#home' },
-							'Intermediate Javascript Study Guide'
+							"a",
+							{ href: "#home" },
+							"Intermediate Javascript Study Guide"
 						)
 					),
 					React.createElement(
-						'div',
-						{ className: 'right menu' },
+						"div",
+						{ className: "right menu" },
 						React.createElement(Search, null),
 						React.createElement(
-							'div',
-							{ className: 'item' },
+							"div",
+							{ className: "item" },
 							React.createElement(
-								'a',
-								{ href: 'update.html' },
-								'Add'
+								"a",
+								{ href: "update.html" },
+								"Add"
 							)
 						)
 					)
@@ -121,7 +120,37 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../utils":11,"./menu/sidebar":4,"./search.js":6,"react":170}],4:[function(require,module,exports){
+},{"./search.js":4,"./sidebar":5,"react":170}],4:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+// var Search = require('../store/searchFunctions');
+
+module.exports = React.createClass({
+			displayName: "exports",
+
+			render: function render() {
+						return React.createElement(
+									"div",
+									{ "class": "item" },
+									React.createElement(
+												"div",
+												{ "class": "ui icon input" },
+												React.createElement("input", { type: "text", onKeyDown: this.add, onC: true, placeholder: "Search..." }),
+												React.createElement("i", { "class": "search link icon" })
+									)
+						);
+			},
+			add: function add(event) {
+						if (event.keyCode == 13) {
+									//router.get('/search', event.target.value);
+									window.location = "file:///Users/samanthavinci/Desktop/study_guide/index.html#/search/" + event.target.value;
+									//window.location = "http://svinci131.github.io/study_guide/index.html/#search/"+event.target.value
+						}
+			}
+});
+
+},{"react":170}],5:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -150,7 +179,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"../../utils":11,"react":170}],5:[function(require,module,exports){
+},{"../../utils":11,"react":170}],6:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -222,36 +251,6 @@ module.exports = React.createClass({
 	}
 });
 
-},{"react":170}],6:[function(require,module,exports){
-"use strict";
-
-var React = require('react');
-// var Search = require('../store/searchFunctions');
-
-module.exports = React.createClass({
-			displayName: "exports",
-
-			render: function render() {
-						return React.createElement(
-									"div",
-									{ "class": "item" },
-									React.createElement(
-												"div",
-												{ "class": "ui icon input" },
-												React.createElement("input", { type: "text", onKeyDown: this.add, onC: true, placeholder: "Search..." }),
-												React.createElement("i", { "class": "search link icon" })
-									)
-						);
-			},
-			add: function add(event) {
-						if (event.keyCode == 13) {
-									//router.get('/search', event.target.value);
-									window.location = "file:///Users/samanthavinci/Desktop/study_guide/index.html#/search/" + event.target.value;
-									//window.location = "http://svinci131.github.io/study_guide/index.html/#search/"+event.target.value
-						}
-			}
-});
-
 },{"react":170}],7:[function(require,module,exports){
 "use strict";
 
@@ -276,7 +275,7 @@ module.exports = React.createClass({
 "use strict";
 
 var React = require('react');
-var Menu = require("./menu");
+var Menu = require("./navBar/menu");
 
 module.exports = React.createClass({
 	displayName: "exports",
@@ -295,7 +294,7 @@ module.exports = React.createClass({
 	}
 });
 
-},{"./menu":3,"react":170}],9:[function(require,module,exports){
+},{"./navBar/menu":3,"react":170}],9:[function(require,module,exports){
 'use strict';
 
 var Router = require('director').Router;

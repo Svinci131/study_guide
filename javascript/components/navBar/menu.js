@@ -1,7 +1,6 @@
 var React = require('react');
-var gen = require('../utils');
 var Search = require("./search.js");
-var Sidebar = require("./menu/sidebar");
+var Sidebar = require("./sidebar");
 
 module.exports = React.createClass({
 	componentDidMount: function () {

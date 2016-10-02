@@ -1,5 +1,5 @@
 var React = require('react');
-var Menu = require("./menu");
+var Menu = require("./navBar/menu");
 
 module.exports = React.createClass({
 	render: function () {

@@ -1,4 +1,4 @@
-var Menu = require('./menu');
+var Menu = require('./navBar/menu.js');
 var Learn = require('./learn');
 var Search = require('./searchResults');
 var Welcome = require('./welcome');
